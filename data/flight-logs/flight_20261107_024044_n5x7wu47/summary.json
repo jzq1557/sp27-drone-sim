@@ -1,0 +1,31 @@
+{
+  "duration_s": 62.996,
+  "left_frames": 945,
+  "nominal_left_frames": 945,
+  "valid_vio_frames": 945,
+  "paired_frames": 944,
+  "coverage": 0.9989417989417989,
+  "longest_uncovered_s": 0.068,
+  "position_rmse_m": 0.08250563894531124,
+  "position_p95_m": 0.1652673949328174,
+  "attitude_rmse_deg": 0.6024740885071761,
+  "streams": {
+    "raw_odom": {
+      "samples": 945,
+      "paired_frames": 944,
+      "position_rmse_m": 0.08250563894531124,
+      "position_p95_m": 0.1652673949328174,
+      "attitude_rmse_deg": 0.6024740885071769,
+      "longest_uncovered_s": 0.068
+    },
+    "filtered_odom": {
+      "samples": 945,
+      "paired_frames": 944,
+      "position_rmse_m": 0.08284394090740735,
+      "position_p95_m": 0.1708588979927708,
+      "attitude_rmse_deg": 0.603538467857167,
+      "longest_uncovered_s": 0.068
+    }
+  },
+  "map_anchor_samples": 945
+}
