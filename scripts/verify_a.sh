@@ -20,8 +20,12 @@ NPROC=$(nproc)
 (( NPROC >= 20 )) && ok "A1 CPU ${NPROC} 核 (>=20)" || bad "A1 CPU" "${NPROC} < 20"
 
 echo "== A2 网络 =="
-CODE=$(curl -s -o /dev/null -m 15 -w '%{http_code}' https://github.com || echo 000)
-[[ $CODE == 200 ]] && ok "A2 github HTTPS 200" || bad "A2 github HTTPS" "code=$CODE"
+# 本机 github.com 直连被墙，改用「清华 ROS 源 + GitHub API」两个可达目标做健康检查
+TUNA=$(curl -s -o /dev/null -m 15 -w '%{http_code}' \
+  https://mirrors.tuna.tsinghua.edu.cn/ros2/ubuntu/dists/jammy/Release || echo 000)
+[[ $TUNA == 200 ]] && ok "A2 清华 ROS 2 源可达" || bad "A2 清华 ROS 2 源" "code=$TUNA"
+GHAPI=$(curl -s -o /dev/null -m 15 -w '%{http_code}' https://api.github.com || echo 000)
+[[ $GHAPI == 200 ]] && ok "A2 GitHub API 可达" || skip "A2 GitHub API（code=$GHAPI，不影响仿真）"
 
 echo "== A3 Gazebo =="
 if command -v gz >/dev/null; then
